@@ -146,6 +146,11 @@ asm_main: ; Start of the program
                 mov     eax, [input1] ; Move the value of the first input from memory location "input1" into the eax register
                 xor     edx, edx      ; Zero out the edx register
                 mov     ebx, [input2] ; Move the value of the second input from memory location "input2" into the ebx register
+
+                cmp     ebx,0   ; validate if the value is zero
+                jg      makediv ; if it different to zero then jump to makediv
+                jmp     div     ; else jump to div:
+        makediv:
                 div     ebx           ; Divide the value in edx:eax by the value in ebx, and store the quotient in eax and the remainder in edx
                 mov     ebx, eax      ; Move the quotient from eax to ebx
                 mov     eax, outmsg6  ; Move the address of the string "outmsg6" into eax
