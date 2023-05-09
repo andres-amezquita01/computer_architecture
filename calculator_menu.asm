@@ -54,7 +54,7 @@ prompt5 db    "2.resta", 0
 prompt6 db    "3.multiplicacion", 0
 prompt7 db    "4.division", 0
 prompt8 db    "Enter a option: ", 0       ; Declare a string to prompt for input
-
+prompt_error_div_0 db    "Error, division by 0! try it again!!!", 0       ; Error when the user wants to divide by 0
 
 
 
@@ -149,6 +149,7 @@ asm_main: ; Start of the program
 
                 cmp     ebx,0   ; validate if the value is zero
                 jg      makediv ; if it different to zero then jump to makediv
+                PRINT_STRING prompt_error_div_0 ; print error if the value is zero
                 jmp     div     ; else jump to div:
         makediv:
                 div     ebx           ; Divide the value in edx:eax by the value in ebx, and store the quotient in eax and the remainder in edx
